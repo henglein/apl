@@ -10,11 +10,6 @@ class Elmt a where
 type Nat = Int      -- nonnegative integers, for ranks, shapes and indexing; must be >= 0
 type Shape = [Nat]  -- shape of array, must be [0] or [d1,...dn] where di > 1 (according to Hains, Mullin '91; different in APL)
 
-toShape :: [Nat] -> Shape
-toShape [] = []
-toShape [1] = [1]
-toShape xs = filter (== 1) xs
-
 -- Vectors (rank-1 arrays)
 
 type Vector a = [a] 
@@ -135,7 +130,9 @@ reduce k z (arr @ (Array [] _)) = arr   -- Identity on rank 0
 reduce k z (Array (s:ss) items)
   = foldr k z (chop ss items)
 
-{- to do:
+
+
+{-
 take, drop
 expand ("\")
 +, -, 
@@ -143,5 +140,10 @@ scalar extension, e.g. [1 2 3] + 4 = [5 6 7], [[1,2,3], [4,5,6]] + [10,110] =
 [[1,2,3] + 10, [4,5,6] + 110] ; arguments of + must have same length or one has to be a 
 singleton; 
 dyadic iota;
+inner product;
+outer product;
+scan;
+catenate;
+pack (~compress);
 -}
 

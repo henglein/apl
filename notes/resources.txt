@@ -1,0 +1,8 @@
+APL resources
+
+APL syntax and symbols:
+http://en.wikipedia.org/wiki/APL_syntax_and_symbols
+
+APL examples: 
+http://dfns.dyalog.com/
+

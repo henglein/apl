@@ -1,0 +1,48 @@
+Dyalog APL notes
+
+Semantics :
+All shapes with nonnegative size are significant; that is, define observably different values
+
+Functions:
+
+
+
+
+Operators:
+
+reduce: 
+  monadic: for each innermost vector, reduce using given function;
+  dyadic: for each innermost vector, map the given function over adjacent (left arg. 1) 
+              or fixed-spaced (other than) elements 
+scan:
+  monadic: ordinary scan 
+
+variant: 
+  dyadic: ?
+
+
+
+Weird cases:
+
+(1) The presence of 0 in shape vectors
+
+      4 0 ⍴ 1 2 3
+
+
+
+
+      4 0 ⍴ 'abc' 5
+
+
+
+
+      4 0 ⍴ 'abc' 'def'
+
+
+
+
+      +/ 4 0 ⍴ 'abc' 5
+ 0 0 0  0 0 0  0 0 0  0 0 0 
+      +/ 4 0 ⍴ 'abc' 'def'
+ 0 0 0  0 0 0  0 0 0  0 0 0 
+
