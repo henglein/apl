@@ -157,12 +157,11 @@ reduceOuter :: (Array a -> Array a -> Array a) -- reduce function on rank n-1 ar
 reduceOuter f = reduce f . ravel
 
 -- reduce inner dimension    
--- precondition: rank inputarray > 1
--- reduceInner :: (a -> a -> a) -> Array a -> Array a
+-- precondition: rank od input array >= 1
+reduceInner :: (a -> a -> a) -> Array a -> Array a
 reduceInner f (Array shape elements) =
-   let (outer, inner) = splitAt (length shape - 1) shape
-
-   in (chop inner elements)
+   let (outer, [n]) = splitAt (length shape - 1) shape
+   in reshapeVec outer (eachVec (reduce f) (segment n elements))
 
 -- outer product
 outerProd :: Array a -> Array b -> Array (a, b)
